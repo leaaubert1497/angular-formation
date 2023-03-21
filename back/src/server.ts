@@ -1,17 +1,16 @@
 console.log('About to start a server')
 
-const express = require('express')
-const serveIndex = require('serve-index')
+import express, { NextFunction, Request, Response } from 'express'
+import serveIndex from 'serve-index'
 
 const app = express()
 const port = 3000
 
-app.use((req, res, next) => {
-    console.log('url: ' + req.path)
-    next()
-  })
+const logger = (req: Request, res: Response, next: NextFunction) => {
+  console.log('url: ' + req.path)
+  next()}
 
-
+app.use(logger)
 
 app.use(express.static('.'))
 app.use(serveIndex('.', { icons: true }))
@@ -23,4 +22,3 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
-  
