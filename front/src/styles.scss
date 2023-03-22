@@ -2,6 +2,24 @@
 @use "../node_modules/normalize.css/normalize.css";
 @use "../node_modules/sanitize.css/sanitize.css";
 
+@use "scss/button.scss";
+
 body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+main {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    gap: 0.5em;
+    padding: 0.5em;
+    margin: 0 auto;
+    h1 {
+        text-align: center;
+    }
+    p {
+        width: 100%;
+        max-width: 50em;
+    }
 }
