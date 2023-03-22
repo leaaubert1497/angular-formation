@@ -1,3 +1,6 @@
-.button {
-    text-decoration: none;
+:host {
+    display: flex;
+    flex: 1;
+    flex-flow: column;
+    justify-content: center;
 }
