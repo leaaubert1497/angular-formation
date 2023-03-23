@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
+import { delay, of, tap, throwError } from 'rxjs';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { Observable } from 'rxjs/internal/Observable';
 import { distinctUntilChanged } from 'rxjs/internal/operators/distinctUntilChanged';
-import { Article } from '../interfaces/article';
+import { generateId } from 'src/misc';
+import { Article, NewArticle } from '../interfaces/article';
 
 @Injectable({
   providedIn: 'root',
@@ -23,12 +25,9 @@ export class ArticleService {
     },
   ]);
 
-  getArticles(): Observable<Article[]> {
-    return this.articles$.pipe(distinctUntilChanged());
-  }
   constructor() {
     setTimeout(() => {
-      this.articles$.value.push({ 
+      this.articles$.value.push({
         id: 'a3',
         name: 'marteau',
         price: 10.0,
@@ -36,5 +35,22 @@ export class ArticleService {
       });
       this.articles$.next(this.articles$.value);
     }, 2000);
+  }
+
+  add(newArticle: NewArticle): Observable<void> {
+    return of(undefined).pipe(
+      delay(2000),
+      tap(() => {
+        this.articles$.value.push({
+          id: generateId(),
+          ...newArticle,
+        });
+        this.articles$.next(this.articles$.value);
+      })
+    );
+  }
+
+  getArticles(): Observable<Article[]> {
+    return this.articles$.pipe(distinctUntilChanged());
   }
 }
