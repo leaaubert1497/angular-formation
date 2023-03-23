@@ -13,7 +13,13 @@ form {
     border: 0.1em solid;
     border-radius: 0.3em;
   }
-  button {
-    margin-top: 3em;
+
+  div.error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    height: 3em;
+    color: #ff0000;
   }
 }

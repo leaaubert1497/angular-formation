@@ -13,8 +13,12 @@
       <span>Quantité</span>
       <input type="number" formControlName="qty" />
     </label>
+    <div class="error">{{ errorMsg }}</div>
     <button class="primary" [disabled]="f.invalid || isAdding">
-      <fa-icon [icon]="isAdding ? faSpinner : faPlus" [spin]="isAdding"></fa-icon>
+      <fa-icon
+        [icon]="isAdding ? faSpinner : faPlus"
+        [spin]="isAdding"
+      ></fa-icon>
       <span>Ajouter</span>
     </button>
   </form>
