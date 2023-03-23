@@ -15,4 +15,12 @@ div.content {
       text-align: right;
     }
   }
-  
+
+  div.error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    height: 3em;
+    color: #ff0000;
+  }

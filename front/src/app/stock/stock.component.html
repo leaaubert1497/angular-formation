@@ -8,10 +8,16 @@
       <a routerLink="add" class="button" title="Ajoutee">
         <fa-icon [icon]="faPlus"></fa-icon>
       </a>
-      <button title="Supprimer" [hidden]="selectedArticles.size === 0">
-        <fa-icon [icon]="faTrashAlt"></fa-icon>
+      <button
+        title="Supprimer"
+        [hidden]="selectedArticles.size === 0"
+        (click)="remove()"
+        [disabled]="isRemoving"
+      >
+        <fa-icon [icon]="isRemoving ? faSpinner : faTrashAlt" [spin]="isRemoving"></fa-icon>
       </button>
     </nav>
+    <div class="error">{{ errorMsg }}</div>
     <table>
       <thead>
         <tr>

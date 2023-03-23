@@ -56,4 +56,18 @@ export class ArticleService {
   getArticles(): Observable<Article[]> {
     return this.articles$.pipe(distinctUntilChanged());
   }
+
+  remove(ids: string[]): Observable<void> {
+    return of(undefined).pipe(
+      delay(2000),
+      tap(() => {
+        if (ids.length === 2) {
+          throw new Error("Interdit d'enlever 2 items à la fois.");
+        }
+        this.articles$.next(
+          this.articles$.value.filter((a) => !ids.includes(a.id))
+        );
+      })
+    );
+  }
 }
