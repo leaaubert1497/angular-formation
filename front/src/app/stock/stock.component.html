@@ -21,7 +21,9 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let a of articleService.getArticles() | async">
+        <tr *ngFor="let a of articleService.getArticles() | async" [class.selected]="selectedArticles.has(a)"
+        (click)="select(a)"
+        >
           <td class="name">{{ a.name }}</td>
           <td class="price">{{ a.price | currency:'EUR':true }}</td>
           <td class="qty">{{ a.qty }}</td>
