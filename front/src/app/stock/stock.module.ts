@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { StockRoutingModule } from './stock-routing.module';
 import { StockComponent } from './stock.component';
 import { AddComponent } from './add/add.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { AddComponent } from './add/add.component';
   ],
   imports: [
     CommonModule,
-    StockRoutingModule
+    StockRoutingModule,
+    FontAwesomeModule
   ]
 })
 export class StockModule { }

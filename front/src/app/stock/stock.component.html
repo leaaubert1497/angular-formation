@@ -2,9 +2,15 @@
   <h1>Liste des articles</h1>
   <div class="content">
     <nav>
-      <button>Rafraîchir</button>
-      <a routerLink="/add" class="button">Ajouter</a>
-      <button>Supprimer</button>
+      <button title="Rafraîchir">
+        <fa-icon [icon]="faRotateRight"></fa-icon>
+      </button>
+      <a routerLink="add" class="button" title="Ajoutee">
+        <fa-icon [icon]="faPlus"></fa-icon>
+      </a>
+      <button title="Supprimer">
+        <fa-icon [icon]="faTrashAlt"></fa-icon>
+      </button>
     </nav>
     <table>
       <thead>
@@ -17,7 +23,7 @@
       <tbody>
         <tr *ngFor="let a of articleService.getArticles() | async">
           <td class="name">{{ a.name }}</td>
-          <td class="price">{{ a.price | currency }}</td>
+          <td class="price">{{ a.price | currency:'EUR':true }}</td>
           <td class="qty">{{ a.qty }}</td>
         </tr>
       </tbody>

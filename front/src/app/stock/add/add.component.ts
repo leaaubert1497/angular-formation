@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-add',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./add.component.scss']
 })
 export class AddComponent {
+  faPlus = faPlus
 
 }
