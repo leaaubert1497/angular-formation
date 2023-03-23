@@ -1,30 +1,17 @@
-import { Component } from '@angular/core';
-import { Article } from '../interfaces/article';
+import { Component, OnDestroy } from '@angular/core';
+import { ArticleService } from '../services/article.service';
 
 @Component({
   selector: 'app-stock',
   templateUrl: './stock.component.html',
   styleUrls: ['./stock.component.scss'],
 })
-export class StockComponent {
-  articles: Article[] = [
-    {
-      id: 'a1',
-      name: 'pelle',
-      price: 3.99,
-      qty: 123,
-    },
-    {
-      id: 'a2',
-      name: 'rateau',
-      price: 8.99,
-      qty: 200,
-    },
-    {
-      id: 'a3',
-      name: 'marteau',
-      price: 10.0,
-      qty: 100,
-    },
-  ];
+export class StockComponent implements OnDestroy {
+  constructor(protected readonly articleService: ArticleService) {
+    console.log('articleService: ' + articleService);
+  }
+
+  ngOnDestroy(): void {
+    console.log('onDestroy');
+  }
 }
