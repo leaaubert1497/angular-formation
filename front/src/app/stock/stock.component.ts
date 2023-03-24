@@ -75,6 +75,9 @@ export class StockComponent implements OnDestroy {
         switchMap(() => {
           return this.articleService.remove(ids);
         }),
+        switchMap(() => {
+          return this.articleService.refresh();
+        }),
         tap(() => {
           this.selectedArticles.clear();
           this.errorMsg = '';
@@ -84,7 +87,7 @@ export class StockComponent implements OnDestroy {
         }),
         catchError((err) => {
           console.log('err: ', err);
-          this.errorMsg = err.message;
+          this.errorMsg = 'Erreur technique';
           return of(undefined);
         })
       )
