@@ -40,14 +40,17 @@ export class AddComponent {
           this.errorMsg = '';
         }),
         switchMap(() => {
-          return this.articleService.add(newArticle).pipe();
+          return this.articleService.add(newArticle);
+        }),
+        switchMap(() => {
+          return this.articleService.refresh();
         }),
         switchMap(() => {
           return this.router.navigate(['..'], { relativeTo: this.route });
         }),
         finalize(() => (this.isAdding = false)),
         catchError((err) => {
-          this.errorMsg = err.message;
+          this.errorMsg = 'Erreur technique';
           return of(undefined);
         })
       )
