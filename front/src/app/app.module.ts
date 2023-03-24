@@ -9,6 +9,7 @@ import { HomeComponent } from './routes/home/home.component';
 import { LegalComponent } from './routes/legal/legal.component';
 import { ArticleService } from './services/article.service';
 import { BackArticleService } from './services/back-article.service';
+import { AutofocusDirective } from './widgets/autofocus.directive';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, LegalComponent],
@@ -21,5 +22,7 @@ import { BackArticleService } from './services/back-article.service';
   ],
   providers: [{ provide: ArticleService, useClass: BackArticleService }],
   bootstrap: [AppComponent],
+  exports: [
+  ],
 })
 export class AppModule {}
