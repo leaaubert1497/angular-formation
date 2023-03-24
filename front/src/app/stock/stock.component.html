@@ -2,8 +2,11 @@
   <h1>Liste des articles</h1>
   <div class="content">
     <nav>
-      <button title="Rafraîchir">
-        <fa-icon [icon]="faRotateRight"></fa-icon>
+      <button title="Rafraîchir" (click)="refresh()" [disabled]="isRefreshing">
+        <fa-icon
+          [icon]="isRefreshing ? faSpinner : faRotateRight"
+          [spin]="isRefreshing"
+        ></fa-icon>
       </button>
       <a routerLink="add" class="button" title="Ajoutee">
         <fa-icon [icon]="faPlus"></fa-icon>
@@ -14,7 +17,10 @@
         (click)="remove()"
         [disabled]="isRemoving"
       >
-        <fa-icon [icon]="isRemoving ? faSpinner : faTrashAlt" [spin]="isRemoving"></fa-icon>
+        <fa-icon
+          [icon]="isRemoving ? faSpinner : faTrashAlt"
+          [spin]="isRemoving"
+        ></fa-icon>
       </button>
     </nav>
     <div class="error">{{ errorMsg }}</div>

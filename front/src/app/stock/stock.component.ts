@@ -16,20 +16,44 @@ import { of } from 'rxjs/internal/observable/of';
   styleUrls: ['./stock.component.scss'],
 })
 export class StockComponent implements OnDestroy {
+  errorMsg = '';
   faPlus = faPlus;
   faRotateRight = faRotateRight;
-  faTrashAlt = faTrashAlt;
   faSpinner = faSpinner;
+  faTrashAlt = faTrashAlt;
+  isRefreshing = false;
+  isRemoving = false;
   selectedArticles = new Set<Article>();
 
-  isRemoving = false;
-  errorMsg = '';
   constructor(protected readonly articleService: ArticleService) {
     console.log('articleService: ' + articleService);
   }
 
   ngOnDestroy(): void {
     console.log('onDestroy');
+  }
+
+  refresh() {
+    console.log('refresh');
+    of(undefined)
+      .pipe(
+        tap(() => {
+          this.errorMsg = '';
+          this.isRefreshing = true;
+        }),
+        switchMap(() => {
+          return this.articleService.refresh();
+        }),
+        finalize(() => {
+          this.isRemoving = false;
+        }),
+        catchError((err) => {
+          console.log('err: ', err);
+          this.errorMsg = err.message;
+          return of(undefined);
+        })
+      )
+      .subscribe();
   }
 
   remove() {

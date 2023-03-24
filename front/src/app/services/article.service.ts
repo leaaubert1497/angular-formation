@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { delay, of, tap, throwError } from 'rxjs';
+import { delay, of, tap, throwError, timer } from 'rxjs';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { Observable } from 'rxjs/internal/Observable';
 import { distinctUntilChanged } from 'rxjs/internal/operators/distinctUntilChanged';
@@ -55,6 +55,10 @@ export class ArticleService {
 
   getArticles(): Observable<Article[]> {
     return this.articles$.pipe(distinctUntilChanged());
+  }
+
+  refresh(): Observable<void> {
+    return of(undefined).pipe(delay(2000));
   }
 
   remove(ids: string[]): Observable<void> {
