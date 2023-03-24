@@ -47,8 +47,10 @@
             [class.selected]="selectedArticles.has(a)"
             (click)="select(a)"
           >
-            <td class="name">{{ a.name }}</td>
-            <td class="price">{{ a.price }} €</td>
+            <td class="name">{{ a.name | ellipsis }}</td>
+            <td class="price">
+              {{ a.price | currency }}
+            </td>
             <td class="qty">{{ a.qty }}</td>
           </tr>
         </ng-template>
