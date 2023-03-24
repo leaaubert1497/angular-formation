@@ -23,7 +23,7 @@
         ></fa-icon>
       </button>
     </nav>
-    <div class="error">{{ errorMsg }}</div>
+    <div class="error">{{ getErrorMsg() }}</div>
     <table>
       <thead>
         <tr>
@@ -33,15 +33,25 @@
         </tr>
       </thead>
       <tbody>
-        <tr
-          *ngFor="let a of articleService.getArticles() | async"
-          [class.selected]="selectedArticles.has(a)"
-          (click)="select(a)"
-        >
-          <td class="name">{{ a.name }}</td>
-          <td class="price">{{ a.price | currency : "EUR" : true }}</td>
-          <td class="qty">{{ a.qty }}</td>
+        <tr *ngIf="articleService.isLoading; else data">
+          <td colspan="3">
+            <div class="loading">
+              <fa-icon [icon]="faSpinner" [spin]="true"></fa-icon>
+              <span>Chargement...</span>
+            </div>
+          </td>
         </tr>
+        <ng-template #data>
+          <tr
+            *ngFor="let a of articleService.getArticles() | async"
+            [class.selected]="selectedArticles.has(a)"
+            (click)="select(a)"
+          >
+            <td class="name">{{ a.name }}</td>
+            <td class="price">{{ a.price }} €</td>
+            <td class="qty">{{ a.qty }}</td>
+          </tr>
+        </ng-template>
       </tbody>
     </table>
   </div>

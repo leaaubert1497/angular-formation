@@ -10,7 +10,9 @@ import { Article, NewArticle } from '../interfaces/article';
   providedIn: 'root',
 })
 export class ArticleService {
-  private articles$ = new BehaviorSubject<Article[]>([
+  isLoading = false;
+  errorMsg = '';
+  protected articles$ = new BehaviorSubject<Article[]>([
     {
       id: 'a1',
       name: 'pelle',

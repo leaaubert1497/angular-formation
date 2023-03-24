@@ -24,3 +24,9 @@ div.content {
     height: 3em;
     color: #ff0000;
   }
+
+  div.loading {
+    display: flex;
+    justify-content: center;
+    gap: 0.5em
+  }
